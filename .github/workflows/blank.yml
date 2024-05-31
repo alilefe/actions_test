@@ -63,7 +63,7 @@ on:
 
 jobs:
   process_json:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
