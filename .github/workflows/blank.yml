@@ -69,4 +69,4 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Mostrar JSON
-        run: echo "el json_string es:""${{ github.event.inputs.json_string }}"
+        run: echo "${{ github.event.inputs.json_string }}"|jq .
