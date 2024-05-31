@@ -1,0 +1,72 @@
+name: Procesar JSON
+
+on:
+  workflow_dispatch:
+    inputs:
+      json_string:
+        description: 'JSON string a procesar'
+        required: true
+        default: |
+          {
+            "op1": {
+              "location": "westeurope",
+              "model_version_list": {
+                "dep1": {
+                  "model": "text-embedding-ada-002",
+                  "version": "2",
+                  "scale_type": "Standard",
+                  "capacity": 1
+                },
+                "dep2": {
+                  "model": "whisper",
+                  "version": "001",
+                  "scale_type": "Standard",
+                  "capacity": 1
+                }
+              }
+            },
+            "op2": {
+              "location": "switzerlandnorth",
+              "model_version_list": {
+                "dep1": {
+                  "model": "gpt-35-turbo",
+                  "version": "0613",
+                  "scale_type": "ProvisionedManaged",
+                  "capacity": 50
+                },
+                "dep2": {
+                  "model": "text-embedding-ada-002",
+                  "version": "2",
+                  "scale_type": "Standard",
+                  "capacity": 1
+                }
+              }
+            },
+            "op3": {
+              "location": "francecentral",
+              "model_version_list": {
+                "dep1": {
+                  "model": "gpt-35-turbo",
+                  "version": "0613",
+                  "scale_type": "Standard",
+                  "capacity": 1
+                },
+                "dep2": {
+                  "model": "gpt-35-turbo",
+                  "version": "1106",
+                  "scale_type": "Standard",
+                  "capacity": 1
+                }
+              }
+            }
+          }
+
+jobs:
+  process_json:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Mostrar JSON
+        run: echo "el json_string es:""${{ github.event.inputs.json_string }}"
